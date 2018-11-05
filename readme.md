@@ -1,8 +1,8 @@
 # Alternity Initiative Tracker
 
-A tool to help [Alternity](http://www.sasquatchgamestudio.com/products/alternity/) players using the 8-Impulse Initiative system.
+A tool to help [Alternity](http://www.sasquatchgamestudio.com/products/alternity/) players using the 8-Impulse Iinitiative system.
 
-This tool is a simple web page. You can open in it any modern browser, either locally from your hard drive, or from a hosted location on the internet.
+This tool is a simple web page. You can open in it any modern browser, on any device, either locally from your hard drive or from a hosted location on the internet.
 
 Currently the tool requires internet access. Future versions may remove this requirement.
 
