@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Alternity Initiative Tracker</title>
 <style>
 * {
 	box-sizing: border-box;
@@ -174,7 +175,7 @@ body {
 		// Drag-and-drop functionality:
 		$(".impulse ul").on("dragover",function(e){
 			e.preventDefault();
-		});
+		});		
 		$(".impulse ul").on("dragenter",function(e){
 			$(this).addClass('over');
 		});
@@ -197,12 +198,6 @@ body {
 		$("#delete").on("dragover",function(e){
 			e.preventDefault();
 		});
-		$("#delete").on("dragenter",function(e){
-			$("#delete").addClass('over');
-		});
-		$("#delete").on("dragleave",function(e){
-			$(this).removeClass('over');
-		});
 		$("#delete").on("drop",function(e){
 			$(this).removeClass('over');
 			$(this).removeClass('active');
@@ -214,7 +209,10 @@ body {
 		// Adding characters:	
 		$("#add-new").on("click",function(e){
 			var newCharacterName = prompt(newCharacterPrompt);
-			$(".impulse-1 ul").append('<li id="unit-' + (new Date).getTime() + '" draggable="true">' + newCharacterName + '</li>');
+			if(newCharacterName !== null && newCharacterName.trim().length > 0)
+			{
+				$(".impulse-1 ul").append('<li id="unit-' + (new Date).getTime() + '" draggable="true">' + newCharacterName + '</li>');
+			}
 		});
 	});
 </script>
