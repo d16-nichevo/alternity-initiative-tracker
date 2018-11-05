@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+	box-sizing: border-box;
+}
+html {
+	font-size: 20px;
+	font-family: sans-serif;
+}
+body {
+	padding: 0;
+	margin: 0;
+}
+#container {
+	display: flex;
+}
+#container > div,
+#container > div > ul {
+	height: 10rem;
+}
+#container > div {
+	flex-grow: 1;
+	position: relative;
+}
+.impulse:after {
+    position: absolute;
+	text-align: center;
+    z-index: 0;
+	font-size: 7.5rem;
+	font-family: 'Exo 2', sans-serif;
+	width: 100%;
+	color: rgba(255,255,255,0.5);
+	text-shadow: 0 0 2rem white;
+}
+.impulse ul {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	z-index: 1;
+	list-style-type: none;
+	width: 100%;
+}
+.impulse ul.over {
+	background-color: rgba(0,0,0,0.5);
+}
+.impulse ul li {
+	padding: 0.2rem;
+}
+.impulse ul li:hover {
+	cursor: move;
+	background-color: rgba(255,255,255,0.5);
+}
+.impulse-1 {
+	background-color: hsl(calc(360 * ( 0 / 8 )), 100%, 80%);
+}
+.impulse-2 {
+	background-color: hsl(calc(360 * ( 1 / 8 )), 100%, 80%);
+}
+.impulse-3 {
+	background-color: hsl(calc(360 * ( 2 / 8 )), 100%, 80%);
+}
+.impulse-4 {
+	background-color: hsl(calc(360 * ( 3 / 8 )), 100%, 80%);
+}
+.impulse-5 {
+	background-color: hsl(calc(360 * ( 4 / 8 )), 100%, 80%);
+}
+.impulse-6 {
+	background-color: hsl(calc(360 * ( 5 / 8 )), 100%, 80%);
+}
+.impulse-7 {
+	background-color: hsl(calc(360 * ( 6 / 8 )), 100%, 80%);
+}
+.impulse-8 {
+	background-color: hsl(calc(360 * ( 7 / 8 )), 100%, 80%);
+}
+.impulse-1:after {
+    content: "1";
+}
+.impulse-2:after {
+    content: "2";
+}
+.impulse-3:after {
+    content: "3";
+}
+.impulse-4:after {
+    content: "4";
+}
+.impulse-5:after {
+    content: "5";
+}
+.impulse-6:after {
+    content: "6";
+}
+.impulse-7:after {
+    content: "7";
+}
+.impulse-8:after {
+    content: "8";
+}
+.control {
+	padding: 0.5rem 1rem;
+	border: 0.2rem solid black;
+	font-size: 1rem;
+	margin: 0.2rem 0.5rem;
+	width: calc(100% - 1rem);
+	text-align: center;
+	font-family: 'Exo 2', sans-serif;
+}
+.control.clickable {
+	cursor: pointer;
+}
+.control.clickable:hover,
+.control.clickable:active,
+#delete.over {
+	border: 0.2rem solid transparent;
+	color: white;
+	background: black;
+}
+#delete {
+	display: none;
+}
+#delete.active {
+	display: block;
+}
+
+/* LAYOUT: 3x3 grid */
+#container {
+	flex-wrap: wrap;
+}
+#container > div {
+	width: 30vw;
+}
+.layout-three-by-three .impulse-1 {
+	order: 1;
+}
+.layout-three-by-three .impulse-2 {
+	order: 2;
+}
+.layout-three-by-three .impulse-3 {
+	order: 3;
+}
+.layout-three-by-three .impulse-4 {
+	order: 6;
+}
+.layout-three-by-three .impulse-5 {
+	order: 9;
+}
+.layout-three-by-three .impulse-6 {
+	order: 8;
+}
+.layout-three-by-three .impulse-7 {
+	order: 7;
+}
+.layout-three-by-three .impulse-8 {
+	order: 4;
+}
+.layout-three-by-three .controls {
+	order: 5;
+}
+</style>
+<link href="https://fonts.googleapis.com/css?family=Exo+2:700" rel="stylesheet"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<script
+	  src="https://code.jquery.com/jquery-3.3.1.min.js"
+	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	  crossorigin="anonymous"></script>
+<script>
+	var newCharacterPrompt = "Enter new name\n\nPlease?";
+
+	$(document).ready(function(){
+		// Drag-and-drop functionality:
+		$(".impulse ul").on("dragover",function(e){
+			e.preventDefault();
+		});
+		$(".impulse ul").on("dragenter",function(e){
+			$(this).addClass('over');
+		});
+		$(".impulse ul").on("dragleave",function(e){
+			$(this).removeClass('over');
+		});
+		$(".impulse ul").on("dragstart","li",function(e){
+			e.originalEvent.dataTransfer.setData("Text",e.target.id);
+			$("#delete").addClass('active');
+		});
+		$(".impulse ul").on("dragend","li",function(e){
+			$("#delete").removeClass('active');
+		});	
+		$(".impulse ul").on("drop",function(e){
+			$(this).removeClass('over');
+			e.preventDefault();
+			var data=e.originalEvent.dataTransfer.getData("Text");
+			e.target.appendChild(document.getElementById(data));			
+		});
+		$("#delete").on("dragover",function(e){
+			e.preventDefault();
+		});
+		$("#delete").on("dragenter",function(e){
+			$("#delete").addClass('over');
+		});
+		$("#delete").on("dragleave",function(e){
+			$(this).removeClass('over');
+		});
+		$("#delete").on("drop",function(e){
+			$(this).removeClass('over');
+			$(this).removeClass('active');
+			e.preventDefault();
+			var data=e.originalEvent.dataTransfer.getData("Text");
+			document.getElementById(data).parentNode.removeChild(document.getElementById(data));
+		});	
+		
+		// Adding characters:	
+		$("#add-new").on("click",function(e){
+			var newCharacterName = prompt(newCharacterPrompt);
+			$(".impulse-1 ul").append('<li id="unit-' + (new Date).getTime() + '" draggable="true">' + newCharacterName + '</li>');
+		});
+	});
+</script>
+</head>
+<body>
+<div id="container" class="layout-three-by-three">
+	<div class="impulse impulse-1"><ul></ul></div>
+	<div class="impulse impulse-2"><ul></ul></div>
+	<div class="impulse impulse-3"><ul></ul></div>
+	<div class="impulse impulse-4"><ul></ul></div>
+	<div class="impulse impulse-5"><ul></ul></div>
+	<div class="impulse impulse-6"><ul></ul></div>
+	<div class="impulse impulse-7"><ul></ul></div>
+	<div class="impulse impulse-8"><ul></ul></div>
+	<div class="controls">
+		<button id="add-new" class="control clickable"><i class="fa fa-user-plus" aria-hidden="true"></i>
+ Add Character</button>
+		<div id="delete" class="control"><i class="fa fa-trash" aria-hidden="true"></i>
+ Drag Here to Delete</div>
+	</div>
+</div>
+</body>
+</html>
