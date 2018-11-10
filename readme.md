@@ -6,13 +6,34 @@ This tool is a simple web page. You can open in it any modern browser, on any de
 
 Currently the tool requires internet access. Future versions may remove this requirement.
 
+## Demo
+
+You can see a demo [here]().
+
+<mark>Be aware that this demo may not represent the latest version!</mark> The latest version is available through [Installation](installation), below.
+
 ## Installation
 
-(This section to be completed.)
+### Latest Version
+
+1. Right-click on this link [here](https://github.com/d16-nichevo/alternity-initiative-tracker/raw/master/index.html) and select "Save Link As..."
+2. Save the file somewhere.
+3. Open the file in your web browser of choice (e.g. Chrome, Firefox, Safari).
+   * In many browsers, you can use <kbd>Ctrl</kbd> + <kbd>O</kbd> to open a file.
+
+### Older Stable Releases
+
+(This section to be filled out later.)
+
+## Usage
+
+* Add a new character by clicking "Add Character". New characters will appear last in impulse 1.
+* Move a character to a new Impulse by dragging-and-dropping. The character will be last in that impulse.
+* Delete a character by dragging it to the "Delete Character" box. (The "Delete Character" box only appears while you are dragging a character.)
 
 ## Project Status
 
-This project is being worked on. Early development will work on a bare minimum set of features. From there, quality-of-life features will be added.
+Currently, the bare minimum functionality is implemented. Ease-of-use improvement should come gradually over time.
 
 ## About this Project
 
@@ -24,4 +45,6 @@ I decided to try mitigating my problems by creating a tool that could do the wor
 
 ## Contact the Author
 
-You can do so [here](http://deck16.net/contact). Email is preferred.
+You can contact me [here](http://deck16.net/contact). Email is preferred.
+
+Feedback and suggested features are welcome, but bear in mind this is a hobby project, not a job.
