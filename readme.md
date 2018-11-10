@@ -45,7 +45,7 @@ Currently the Initiative Tracker requires an internet connection to use. This re
 These instructions apply to the latest [stable release](#stable-releases).
 
 * Add a new character by clicking "Add Character". New characters will appear last in impulse 1.
-* Move a character to a new Impulse by dragging-and-dropping. The character will be last in that impulse.
+* Move a character to a new impulse by dragging-and-dropping. The character will be last in that impulse.
 * Delete a character by dragging it to the "Delete Character" box. (The "Delete Character" box only appears while you are dragging a character.)
 
 ## Project Status
@@ -62,6 +62,8 @@ I decided to try mitigating my problems by creating a tool that could do the wor
 
 ## Contact the Author
 
-You can contact me [here](http://deck16.net/contact). Email is preferred.
-
 Feedback and suggested features are welcome, but bear in mind this is a hobby project, not a job.
+
+Ways to contact me are listed [here](http://deck16.net/contact). Email is preferred.
+
+You can also post on [this Reddit thread](https://www.reddit.com/r/Alternity2018/comments/9vqp2v/initiative_tracker_web_tool/).
