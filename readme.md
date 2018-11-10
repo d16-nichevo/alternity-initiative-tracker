@@ -10,7 +10,7 @@ Currently the tool requires internet access. Future versions may remove this req
 
 You can see a demo [here](http://members.iinet.net.au/~nichevo/alternity-initiative-tracker/).
 
-<mark>Be aware that this demo may not represent the latest version!</mark> The latest version is available through [Installation](installation), below.
+__Be aware that this demo may not represent the latest version!__ The latest version is available through [Installation](installation), below.
 
 ## Installation
 
@@ -18,14 +18,20 @@ You can see a demo [here](http://members.iinet.net.au/~nichevo/alternity-initiat
 
 1. Right-click on this link [here](https://github.com/d16-nichevo/alternity-initiative-tracker/raw/master/index.html) and select "Save Link As..."
 2. Save the file somewhere.
-3. Open the file in your web browser of choice (e.g. Chrome, Firefox, Safari).
-   * In many browsers, you can use <kbd>Ctrl</kbd> + <kbd>O</kbd> to open a file.
+3. See the [Usage](usage) section for what to do next.
 
 ### Older Stable Releases
 
 (This section to be filled out later.)
 
 ## Usage
+
+Opening
+
+* If you copied the file locally, open the file in your web browser of choice.
+  * In many browsers, you can use <kbd>Ctrl</kbd> + <kbd>O</kbd> to open a file.
+
+Using
 
 * Add a new character by clicking "Add Character". New characters will appear last in impulse 1.
 * Move a character to a new Impulse by dragging-and-dropping. The character will be last in that impulse.
