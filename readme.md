@@ -8,7 +8,7 @@ Currently the tool requires internet access. Future versions may remove this req
 
 ## Demo
 
-You can see a demo [here]().
+You can see a demo [here](http://members.iinet.net.au/~nichevo/alternity-initiative-tracker/).
 
 <mark>Be aware that this demo may not represent the latest version!</mark> The latest version is available through [Installation](installation), below.
 
