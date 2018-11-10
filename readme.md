@@ -14,25 +14,36 @@ __Be aware that this demo may not represent the latest version!__ The latest ver
 
 ## Installation
 
+### Stable Releases
+
+1. Go [here](https://github.com/d16-nichevo/alternity-initiative-tracker/releases).
+1. Find the release that interests you. Usually this would be the highest version.
+1. Click to download the source code.
+1. Extract the files.
+   * `index.html` is the only file you need. You can delete the other files.
+1. See the [Usage](#usage) section for what to do next.
+
+
 ### Latest Version
+
+The latest version might have bugs and incomplete features.
 
 1. Right-click on this link [here](https://github.com/d16-nichevo/alternity-initiative-tracker/raw/master/index.html) and select "Save Link As..."
 2. Save the file somewhere.
 3. See the [Usage](#usage) section for what to do next.
 
-### Older Stable Releases
-
-(This section to be filled out later.)
-
 ## Usage
 
-Opening
+### Opening
 
 * You can view a live demo by clicking the link in the [Demo](#demo) section.
 * If you copied the file locally (see [Installation](#installation), open the file in your web browser of choice.
-  * In many browsers, you can use <kbd>Ctrl</kbd> + <kbd>O</kbd> to open a file.
+  * The filename is `index.html` (unless you renamed it).
+  * In most browsers, you can use <kbd>Ctrl</kbd> + <kbd>O</kbd> to open a file.
 
-Using
+### Tracking Initiative
+
+These instructions apply to the latest [stable release](#stable-releases).
 
 * Add a new character by clicking "Add Character". New characters will appear last in impulse 1.
 * Move a character to a new Impulse by dragging-and-dropping. The character will be last in that impulse.
