@@ -10,7 +10,7 @@ Currently the tool requires internet access. Future versions may remove this req
 
 You can see a demo [here](http://members.iinet.net.au/~nichevo/alternity-initiative-tracker/).
 
-__Be aware that this demo may not represent the latest version!__ The latest version is available through [Installation](installation), below.
+__Be aware that this demo may not represent the latest version!__ The latest version is available through [Installation](#installation), below.
 
 ## Installation
 
@@ -18,7 +18,7 @@ __Be aware that this demo may not represent the latest version!__ The latest ver
 
 1. Right-click on this link [here](https://github.com/d16-nichevo/alternity-initiative-tracker/raw/master/index.html) and select "Save Link As..."
 2. Save the file somewhere.
-3. See the [Usage](usage) section for what to do next.
+3. See the [Usage](#usage) section for what to do next.
 
 ### Older Stable Releases
 
@@ -28,7 +28,8 @@ __Be aware that this demo may not represent the latest version!__ The latest ver
 
 Opening
 
-* If you copied the file locally, open the file in your web browser of choice.
+* You can view a live demo by clicking the link in the [Demo](#demo) section.
+* If you copied the file locally (see [Installation](#installation), open the file in your web browser of choice.
   * In many browsers, you can use <kbd>Ctrl</kbd> + <kbd>O</kbd> to open a file.
 
 Using
