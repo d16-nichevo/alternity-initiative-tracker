@@ -4,8 +4,6 @@ A tool to help [Alternity](http://www.sasquatchgamestudio.com/products/alternity
 
 This tool is a simple web page. You can open in it any modern browser, on any device, either locally from your hard drive or from a hosted location on the internet.
 
-Currently the tool requires internet access. Future versions may remove this requirement.
-
 ## Demo
 
 You can see a demo [here](http://members.iinet.net.au/~nichevo/alternity-initiative-tracker/).
@@ -23,7 +21,6 @@ __Be aware that this demo may not represent the latest version!__ The latest ver
    * `index.html` is the only file you need. You can delete the other files.
 1. See the [Usage](#usage) section for what to do next.
 
-
 ### Latest Version
 
 The latest version might have bugs and incomplete features.
@@ -33,6 +30,8 @@ The latest version might have bugs and incomplete features.
 3. See the [Usage](#usage) section for what to do next.
 
 ## Usage
+
+Currently the Initiative Tracker requires an internet connection to use. This requirement may be removed in later releases.
 
 ### Opening
 
