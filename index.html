@@ -43,15 +43,11 @@ body {
 	list-style-type: none;
 	width: 100%;
 }
-.impulse ul.over {
-	background-color: rgba(0,0,0,0.5);
-}
 .impulse ul li {
 	padding: 0.2rem;
 }
-.impulse ul li:hover {
-	cursor: move;
-	background-color: rgba(255,255,255,0.5);
+.impulse ul li.over {
+	border-top: 4px dotted black;
 }
 .impulse-1 {
 	background-color: hsl(calc(360 * ( 0 / 8 )), 100%, 80%);
@@ -170,36 +166,53 @@ body {
 	  crossorigin="anonymous"></script>
 <script>
 	var newCharacterPrompt = "Enter a character name.";
+	var dragCounter = 0; // https://stackoverflow.com/a/21002544
 
 	$(document).ready(function(){
 		// Drag-and-drop functionality:
 		$(".impulse ul").on("dragover",function(e){
 			e.preventDefault();
+		});	
+		$(".impulse ul li").on("dragover",function(e){
+			e.preventDefault();
 		});		
-		$(".impulse ul").on("dragenter",function(e){
+		$(".impulse ul").on("dragenter","li",function(e){
+			dragCounter++;
+			$(".impulse ul li").removeClass('over');
 			$(this).addClass('over');
 		});
-		$(".impulse ul").on("dragleave",function(e){
-			$(this).removeClass('over');
+		$(".impulse ul").on("dragleave","li",function(e){
+			dragCounter--;
+			if (dragCounter === 0) {
+				$(this).removeClass('over');
+			}
 		});
 		$(".impulse ul").on("dragstart","li",function(e){
 			e.originalEvent.dataTransfer.setData("Text",e.target.id);
 			$("#delete").addClass('active');
 		});
 		$(".impulse ul").on("dragend","li",function(e){
+			$(this).removeClass('over');
 			$("#delete").removeClass('active');
 		});	
 		$(".impulse ul").on("drop",function(e){
-			$(this).removeClass('over');
+			$(".impulse ul li").removeClass('over');
 			e.preventDefault();
 			var data=e.originalEvent.dataTransfer.getData("Text");
-			e.target.closest(".impulse ul").appendChild(document.getElementById(data));			
+			if(e.target.nodeName == "UL")
+			{
+				e.target.appendChild(document.getElementById(data));	
+			}
+			else if(e.target.nodeName == "LI")
+			{
+				var list = e.target.closest(".impulse ul");
+				list.insertBefore(document.getElementById(data), e.target);	
+			}
 		});
 		$("#delete").on("dragover",function(e){
 			e.preventDefault();
 		});
 		$("#delete").on("drop",function(e){
-			$(this).removeClass('over');
 			$(this).removeClass('active');
 			e.preventDefault();
 			var data=e.originalEvent.dataTransfer.getData("Text");
