@@ -25,6 +25,13 @@ body {
 	flex-grow: 1;
 	position: relative;
 }
+.block {
+	display: inline-block;
+	width: 100%;
+}
+.float-right {
+	float: right;
+}
 .impulse:after {
     position: absolute;
 	text-align: center;
@@ -49,29 +56,56 @@ body {
 .impulse ul li.over {
 	border-top: 4px dotted black;
 }
+.impulse ul li.dragging {
+	color: rgba(0,0,0,0.5);
+}
 .impulse-1 {
 	background-color: hsl(calc(360 * ( 0 / 8 )), 100%, 80%);
+}
+.impulse-1.current-impulse {
+	background-color: hsl(calc(360 * ( 0 / 8 )), 100%, 60%);
 }
 .impulse-2 {
 	background-color: hsl(calc(360 * ( 1 / 8 )), 100%, 80%);
 }
+.impulse-2.current-impulse {
+	background-color: hsl(calc(360 * ( 1 / 8 )), 100%, 60%);
+}
 .impulse-3 {
 	background-color: hsl(calc(360 * ( 2 / 8 )), 100%, 80%);
+}
+.impulse-3.current-impulse {
+	background-color: hsl(calc(360 * ( 2 / 8 )), 100%, 60%);
 }
 .impulse-4 {
 	background-color: hsl(calc(360 * ( 3 / 8 )), 100%, 80%);
 }
+.impulse-4.current-impulse {
+	background-color: hsl(calc(360 * ( 3 / 8 )), 100%, 60%);
+}
 .impulse-5 {
 	background-color: hsl(calc(360 * ( 4 / 8 )), 100%, 80%);
+}
+.impulse-5.current-impulse {
+	background-color: hsl(calc(360 * ( 4 / 8 )), 100%, 60%);
 }
 .impulse-6 {
 	background-color: hsl(calc(360 * ( 5 / 8 )), 100%, 80%);
 }
+.impulse-6.current-impulse {
+	background-color: hsl(calc(360 * ( 5 / 8 )), 100%, 60%);
+}
 .impulse-7 {
 	background-color: hsl(calc(360 * ( 6 / 8 )), 100%, 80%);
 }
+.impulse-7.current-impulse {
+	background-color: hsl(calc(360 * ( 6 / 8 )), 100%, 60%);
+}
 .impulse-8 {
 	background-color: hsl(calc(360 * ( 7 / 8 )), 100%, 80%);
+}
+.impulse-8.current-impulse {
+	background-color: hsl(calc(360 * ( 7 / 8 )), 100%, 60%);
 }
 .impulse-1:after {
     content: "1";
@@ -98,16 +132,19 @@ body {
     content: "8";
 }
 .control {
+	display: inline-block;
 	padding: 0.5rem 1rem;
-	border: 0.2rem solid black;
 	font-size: 1rem;
-	margin: 0.2rem 0.5rem;
-	width: calc(100% - 1rem);
+	margin: 0.2rem 0.5rem;	
 	text-align: center;
 	font-family: 'Exo 2', sans-serif;
 }
 .control.clickable {
 	cursor: pointer;
+	border: 0.2rem solid black;
+}
+.control.small {
+	padding: 0.5rem;
 }
 .control.clickable:hover,
 .control.clickable:active,
@@ -115,6 +152,9 @@ body {
 	border: 0.2rem solid transparent;
 	color: white;
 	background: black;
+}
+.control .fa {
+	margin-right: 0.5rem;
 }
 #delete {
 	display: none;
@@ -165,11 +205,15 @@ body {
 	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	  crossorigin="anonymous"></script>
 <script>
-	var newCharacterPrompt = "Enter a character name.";
+	var currentImpulse = 1;
 	var dragCounter = 0; // https://stackoverflow.com/a/21002544
+	var newCharacterPrompt = "Enter a character name.";	
 
 	$(document).ready(function(){
-		// Drag-and-drop functionality:
+		/////////////////////////////
+		//	DRAG & DROP FUNCTIONALITY
+		/////////////////////////////
+
 		$(".impulse ul").on("dragover",function(e){
 			e.preventDefault();
 		});	
@@ -188,6 +232,7 @@ body {
 			}
 		});
 		$(".impulse ul").on("dragstart","li",function(e){
+			$(this).addClass('dragging');
 			e.originalEvent.dataTransfer.setData("Text",e.target.id);
 			$("#delete").addClass('active');
 		});
@@ -196,18 +241,17 @@ body {
 			$("#delete").removeClass('active');
 		});	
 		$(".impulse ul").on("drop",function(e){
-			$(".impulse ul li").removeClass('over');
+			$(".impulse ul li").removeClass('over').removeClass('dragging');;
 			e.preventDefault();
 			var data=e.originalEvent.dataTransfer.getData("Text");
-			if(e.target.nodeName == "UL")
-			{
+			if(e.target.nodeName == "UL") {
 				e.target.appendChild(document.getElementById(data));	
 			}
-			else if(e.target.nodeName == "LI")
-			{
+			else if(e.target.nodeName == "LI") {
 				var list = e.target.closest(".impulse ul");
 				list.insertBefore(document.getElementById(data), e.target);	
 			}
+			Update();
 		});
 		$("#delete").on("dragover",function(e){
 			e.preventDefault();
@@ -216,23 +260,91 @@ body {
 			$(this).removeClass('active');
 			e.preventDefault();
 			var data=e.originalEvent.dataTransfer.getData("Text");
-			document.getElementById(data).parentNode.removeChild(document.getElementById(data));
+			document.getElementById(data).parentNode.removeChild(document.getElementById(data));	
+			Update();		
 		});	
+
+		/////////////////////////////
+		//	MAIN CONTROLS
+		/////////////////////////////
+
+		// Next impulse:
+		$("#next-impulse").on("click",function(e){
+			currentImpulse++;
+			if(currentImpulse > 8)
+			{
+				currentImpulse = 1;
+			}
+
+			// Impulse styles:			
+			$(".impulse").removeClass("current-impulse");
+			$(".impulse").eq(currentImpulse - 1).addClass("current-impulse");
+			
+			// "Current impulse" text display:
+			$("#current-impuse").html(currentImpulse);
+
+			Update();				
+		});
+
+		// Move character forward impulse(s) with button:
+		$(".move-character").on("click",function(e){
+			if(GetCurrentCharacter().length) {
+				var id = GetCurrentCharacter().attr("id");
+				var newImpulse = + currentImpulse + parseInt($(this).attr("impulses"));
+				while(newImpulse > 8)
+				{
+					newImpulse -= 8;
+				}
+				GetCurrentCharacter().appendTo($(".impulse").eq(newImpulse - 1).children("ul").first()).hide().fadeIn();
+				// $("body").find("#" + id).fadeIn("slow");
+				Update();	
+			}
+		});
 		
 		// Adding characters:	
 		$("#add-new").on("click",function(e){
 			var newCharacterName = prompt(newCharacterPrompt);
 			if(newCharacterName !== null && newCharacterName.trim().length > 0)
 			{
-				$(".impulse-1 ul").append('<li id="unit-' + (new Date).getTime() + '" draggable="true">' + newCharacterName + '</li>');
+				$(".current-impulse ul").append('<li id="unit-' + (new Date).getTime() + '" draggable="true">' + newCharacterName + '</li>').hide().fadeIn();
+				Update();
 			}
 		});
+
+		/////////////////////////////
+		//	HELPER METHODS
+		/////////////////////////////
+
+		// Updates commonly-changed things across the page:
+		function Update(){
+			// Show who's next in initiative:
+			if(GetCurrentCharacter().length) {
+				$("#current-character").html(GetCurrentCharacter().html());
+			}
+			else {
+				$("#current-character").html("(none)");
+			}
+		}
+
+		// Return the now-acting character (i.e. top of the current impulse):
+		function GetCurrentCharacter() {			
+			return $(".current-impulse li:first-of-type");
+		}
+
+		function WrapImpulse(impulse, addImpulses) {
+			var r = + impulse + addImpulses;
+			while(r > 8)
+			{
+				r -= 8;
+			}
+			return r;
+		}
 	});
 </script>
 </head>
 <body>
 <div id="container" class="layout-three-by-three">
-	<div class="impulse impulse-1"><ul></ul></div>
+	<div class="impulse impulse-1 current-impulse"><ul></ul></div>
 	<div class="impulse impulse-2"><ul></ul></div>
 	<div class="impulse impulse-3"><ul></ul></div>
 	<div class="impulse impulse-4"><ul></ul></div>
@@ -241,10 +353,20 @@ body {
 	<div class="impulse impulse-7"><ul></ul></div>
 	<div class="impulse impulse-8"><ul></ul></div>
 	<div class="controls">
-		<button id="add-new" class="control clickable"><i class="fa fa-user-plus" aria-hidden="true"></i>
- Add Character</button>
-		<div id="delete" class="control"><i class="fa fa-trash" aria-hidden="true"></i>
- Drag Here to Delete</div>
+		<div class="block">
+			<div class="control">Current Impulse: <span id="current-impuse">1</span></div>
+			<button id="next-impulse" class="control clickable float-right"><i class="fa fa-step-forward" aria-hidden="true"></i> Next Impulse</button>
+		</div>
+		<div class="block">
+			<div class="control">Acting Now: <span id="current-character">(none)</span></div>
+			<div class="control clickable float-right small move-character" impulses="5">+5</div>
+			<div class="control clickable float-right small move-character" impulses="4">+4</div>
+			<div class="control clickable float-right small move-character" impulses="3">+3</div>
+			<div class="control clickable float-right small move-character" impulses="2">+2</div>
+			<div class="control clickable float-right small move-character" impulses="1">+1</div>
+		</div>		
+		<button id="add-new" class="control clickable"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Character</button>		
+		<div id="delete" class="control"><i class="fa fa-trash" aria-hidden="true"></i> Drag Here to Delete</div>
 	</div>
 </div>
 </body>
